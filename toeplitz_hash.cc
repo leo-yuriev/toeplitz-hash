@@ -35,8 +35,8 @@ static const rss_key random_key = {
     }};
 
 typedef struct verification_table {
-    char src_addr[40];
-    char dst_addr[40];
+    const char *src_addr;
+    const char *dst_addr;
     uint16_t src_port;
     uint16_t dst_port;
     uint32_t with_tcp_hash;
@@ -242,7 +242,7 @@ void setup_vfmrqc(uint8_t rxq, uint8_t *rss_indir_tbl) {
         if (j == rss_i) j = 0;
 
         rss_indir_tbl[i] = j;
-        printf("indir_tbl[%d]=%d\n", i, j);
+        // printf("indir_tbl[%d]=%d\n", i, j);
 
         vfreta |= j << (i & 0x3) * 8;
         if ((i & 3) == 3) {
